@@ -1,38 +1,60 @@
-.btn-group button {
-    background-color: #4CAF50; /* Green background */
-    border: 1px solid green; /* Green border */
-    color: white; /* White text */
-    padding: 10px 24px; /* Some padding */
-    cursor: pointer; /* Pointer/hand icon */
-    width: 25%; /* Set a width if needed */
-    display: block; /* Make the buttons appear below each other */
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP&display=swap');
+
+body {
+    background-color: #b8c6db;
+    background-image: linear-gradient(315deg, #b8c6db 0%, #f5f7fa 100%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Noto Sans JP', sans-serif;
+    margin: 0;
+    min-height: 100vh;
+    display: block;
 }
 
-.btn-group button:not(:last-child) {
-    border-bottom: none; /* Prevent double borders */   
+h1 {
+    margin: 20px;
+    text-align: center;
+    margin-bottom: 100px;
 }
 
-/* Add a background color on hover */
-.btn-group button:hover {
-    background-color: #3e8e41;
+.btn-group {
+    text-align: center;
+    margin-bottom: 100px;
 }
 
-
-.creationDiv button {
-    background-color: #4c4eaf; /* Green background */
-    border: 5px solid white; /* Green border */
-    color: white; /* White text */
-    padding: 10px 24px; /* Some padding */
-    cursor: pointer; /* Pointer/hand icon */
-    width: 10%; /* Set a width if needed */
+/* Creation Functionality */
+.creationContainer {
+    text-align: center;
+    
+   
+}
+.creationDiv {
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 10px;
+    padding: 50px;
+    text-align: center;
+    display: inline-block;
     
 }
-  
-.creationDiv button:not(:last-child) {
-    border-bottom: none; /* Prevent double borders */
+.creationHeader {
+    padding-bottom: 20px;
 }
-  
-/* Add a background color on hover */
-.creationDiv button:hover {
-    background-color: blue;
+
+
+/*Review Functionality*/
+
+button {
+    border-radius: 10px;
+    border-width: 1px;
+    box-shadow: 0 0 10px 2px rgba(100, 100, 100, 0.1);
+    overflow: hidden;
+    width: 200px;
+    max-width: 100%;
+    height: 40px;
+    cursor: pointer;
+}
+button:hover {
+    background-color: #add8e6;
 }

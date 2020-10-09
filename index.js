@@ -18,12 +18,21 @@ class Card {
 
 function createCard() {
     //create a div to house the creation-specific elements.
+    var creationContainer = document.createElement('div');
+    creationContainer.setAttribute("class", "creationContainer");
+    document.body.appendChild(creationContainer);
     var creationDiv = document.createElement('div');
     creationDiv.setAttribute("class", "creationDiv");
-    document.body.appendChild(creationDiv);
+    creationContainer.appendChild(creationDiv);
+
+    var creationHeader = document.createElement("header");
+    creationHeader.setAttribute("class", "creationHeader");
+    creationHeader.innerHTML = "Create your new card below.";
+    creationDiv.appendChild(creationHeader);
 
     //create word field
     var createWordField = document.createElement("INPUT");
+    createWordField.setAttribute("class", createWordField);
     createWordField.setAttribute("id", "createWord");
     createWordField.setAttribute("type", "text");
     creationDiv.appendChild(createWordField);
@@ -35,6 +44,7 @@ function createCard() {
 
     //create definition field
     var createDefinitionField = document.createElement("INPUT");
+    createDefinitionField.setAttribute("class", createDefinitionField);
     createDefinitionField.setAttribute("id", "createDefinition");
     createDefinitionField.setAttribute("type", "text");
     creationDiv.appendChild(createDefinitionField);
@@ -62,10 +72,14 @@ function createCard() {
 
 function reviewCards() {
     if (cards.length >= 1) {
+        var reviewContainer = document.createElement('div');
+        reviewContainer.setAttribute("class", "reviewContainer");
+        document.body.appendChild(reviewContainer);
         //create navigation and quit buttons
         var reviewDiv = document.createElement('div');
         reviewDiv.setAttribute("class", "reviewDiv");
-        document.body.appendChild(reviewDiv);
+        reviewContainer.appendChild(reviewDiv);
+
         var prv = document.createElement('BUTTON');
         prv.innerHTML = "Previous";
         var nxt = document.createElement('BUTTON');
@@ -74,6 +88,7 @@ function reviewCards() {
         reviewDiv.appendChild(nxt);
         
         var qt = document.createElement("BUTTON");
+        qt.style.backgroundColor = "#FFCCCB";
         qt.innerHTML = "Quit";
         qt.onclick = function() {
             reviewDiv.remove();
@@ -87,21 +102,32 @@ function reviewCards() {
 
         //display the cards
         function displayCard(index) {
+            //adjust previous and next button availability
+            if (index <= 0) {
+                prv.disabled = true;
+            }
+            else {
+                prv.disabled = false;
+            }
+            if (index >= cards.length - 1) {
+                nxt.disabled = true;
+            }
+            else {
+                nxt.disabled = false;
+            }
+
+
             //adjust which card is shown
             c.innerHTML = cards[index].getWord();
 
             //handle user moving to next or previous card
             nxt.onclick = function() {
-                if (index < cards.length - 1) {
-                    index++;
-                    displayCard(index);
-                }
+                index++;
+                displayCard(index);
             }
             prv.onclick = function() {
-                if (index > 0) {
-                    index--;
-                    displayCard(index)
-                }
+                index--;
+                displayCard(index)
             }
 
             //handle user clicking on card to view other side
