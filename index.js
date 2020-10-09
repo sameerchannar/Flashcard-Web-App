@@ -80,6 +80,9 @@ var reviewOpen = false;
 function reviewCards() {
     if (cards.length >= 1 && reviewOpen == false) {
         reviewOpen = true;
+        document.getElementById("review").disabled = true;
+        document.getElementById("create").disabled = true;
+
         var reviewContainer = document.createElement('div');
         reviewContainer.setAttribute("class", "reviewContainer");
         document.body.appendChild(reviewContainer);
@@ -108,9 +111,13 @@ function reviewCards() {
         reviewDiv.appendChild(nxt);
         
         var qt = document.createElement("BUTTON");
-        qt.style.backgroundColor = "#FFCCCB";
+        qt.setAttribute("class", "qt");
+        
         qt.innerHTML = "Quit to Home";
         qt.onclick = function() {
+            document.getElementById("review").disabled = false;
+            document.getElementById("create").disabled = false;
+
             reviewOpen = false;
             reviewContainer.remove();
         }
@@ -137,6 +144,7 @@ function reviewCards() {
 
 
             //adjust which card is shown
+            var showing = "word";
             c.innerHTML = cards[index].getWord();
 
             //handle user moving to next or previous card
@@ -151,20 +159,43 @@ function reviewCards() {
 
             //handle user clicking on card to view other side
             c.onclick = function() {
-                c.innerHTML = cards[index].getDefinition();
+                if (showing == "word") {
+                    
+                    currCard.style.transform = "rotateY(180deg)";
+                    c.style.transform = "rotateY(180deg)";
+
+                    c.innerHTML = cards[index].getDefinition();
+
+                    showing = "definition";
+                    
+                    
+
+                }
+                else {
+                    currCard.style.transform = "rotateY(0deg)";
+                    c.style.transform = "rotateY(0deg)";
+
+                    c.innerHTML = cards[index].getWord();
+
+                    showing = "word";
+
+                }
+                currCard.style.transition = "0.2s"
+                
+
+                    
+
+
             }
             
         }
 
         var index = 0;
         displayCard(index);
-
-        
-
         
     }
     else {
-        alert("You don't have any cards yet.");
+        document.getElementById("review").disabled = true;
     }
     
 

@@ -61,7 +61,10 @@ h1 {
     text-align: center;
     align-items: center;
     justify-content: center;
-    
+    background-color: white;
+}
+.c:hover {
+    background-color: #e7e5e5;
 
 }
 
@@ -91,4 +94,11 @@ button:hover {
 }
 .submit:hover {
     background-color: mediumseagreen;
+}
+
+.qt {
+    background-color: #FFCCCB;
+}
+.qt:hover {
+    background-color: #f59392;
 }
