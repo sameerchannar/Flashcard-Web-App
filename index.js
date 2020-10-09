@@ -14,6 +14,10 @@ class Card {
 
 }
 
+window.onload = function() {
+    document.getElementById("review").disabled = true;
+}
+
 
 
 function createCard() {
@@ -32,7 +36,7 @@ function createCard() {
 
     //create word field
     var createWordField = document.createElement("INPUT");
-    createWordField.setAttribute("class", createWordField);
+    createWordField.setAttribute("class", "createWordField");
     createWordField.setAttribute("id", "createWord");
     createWordField.setAttribute("type", "text");
     creationDiv.appendChild(createWordField);
@@ -44,7 +48,7 @@ function createCard() {
 
     //create definition field
     var createDefinitionField = document.createElement("INPUT");
-    createDefinitionField.setAttribute("class", createDefinitionField);
+    createDefinitionField.setAttribute("class", "createDefinitionField");
     createDefinitionField.setAttribute("id", "createDefinition");
     createDefinitionField.setAttribute("type", "text");
     creationDiv.appendChild(createDefinitionField);
@@ -55,14 +59,15 @@ function createCard() {
     creationDiv.insertBefore(createDefinitionLabel, createDefinitionField);
 
     //create submit button
-    var btn = document.createElement("BUTTON");
-    btn.innerHTML = "Submit";
-    creationDiv.appendChild(btn);
+    var submit = document.createElement("BUTTON");
+    submit.innerHTML = "Submit";
+    submit.setAttribute("class", "submit");
+    creationDiv.appendChild(submit);
 
-    btn.onclick = function() {
+    submit.onclick = function() {
         var newCard = new Card(createWordField.value, createDefinitionField.value);
         cards.push(newCard);
-        console.log(cards);
+        document.getElementById("review").disabled = false;
         creationDiv.remove();
     }
 
@@ -70,11 +75,26 @@ function createCard() {
     
 }
 
+var reviewOpen = false;
+
 function reviewCards() {
-    if (cards.length >= 1) {
+    if (cards.length >= 1 && reviewOpen == false) {
+        reviewOpen = true;
         var reviewContainer = document.createElement('div');
         reviewContainer.setAttribute("class", "reviewContainer");
         document.body.appendChild(reviewContainer);
+
+
+        //currcard
+        var currCard = document.createElement('div');
+        currCard.setAttribute("class", "currCard");
+        reviewContainer.appendChild(currCard);
+        var c = document.createElement("BUTTON");
+        c.setAttribute("class", "c");
+        currCard.appendChild(c);
+
+
+
         //create navigation and quit buttons
         var reviewDiv = document.createElement('div');
         reviewDiv.setAttribute("class", "reviewDiv");
@@ -89,15 +109,14 @@ function reviewCards() {
         
         var qt = document.createElement("BUTTON");
         qt.style.backgroundColor = "#FFCCCB";
-        qt.innerHTML = "Quit";
+        qt.innerHTML = "Quit to Home";
         qt.onclick = function() {
-            reviewDiv.remove();
+            reviewOpen = false;
+            reviewContainer.remove();
         }
         reviewDiv.appendChild(qt);
     
-        //currcard
-        var c = document.createElement("BUTTON");
-        reviewDiv.appendChild(c);
+        
 
 
         //display the cards
