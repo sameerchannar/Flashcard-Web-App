@@ -86,12 +86,13 @@ function reviewCards() {
         var reviewContainer = document.createElement('div');
         reviewContainer.setAttribute("class", "reviewContainer");
         document.body.appendChild(reviewContainer);
-
+        var reviewDiv = document.createElement('div');
+        
 
         //currcard
         var currCard = document.createElement('div');
+        reviewDiv.appendChild(currCard);
         currCard.setAttribute("class", "currCard");
-        reviewContainer.appendChild(currCard);
         var c = document.createElement("BUTTON");
         c.setAttribute("class", "c");
         currCard.appendChild(c);
@@ -99,7 +100,6 @@ function reviewCards() {
 
 
         //create navigation and quit buttons
-        var reviewDiv = document.createElement('div');
         reviewDiv.setAttribute("class", "reviewDiv");
         reviewContainer.appendChild(reviewDiv);
 
